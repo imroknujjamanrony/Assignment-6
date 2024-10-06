@@ -1,3 +1,5 @@
+// *load categories*\\
+
 const loadCategories = async () => {
   const response = await fetch(
     "https://openapi.programming-hero.com/api/peddy/categories"
@@ -5,6 +7,8 @@ const loadCategories = async () => {
   const data = await response.json();
   DisplayCategories(data.categories);
 };
+
+// *display categories*\\
 
 const DisplayCategories = (pets) => {
   const categoryContainer = document.getElementById("pet-category");
@@ -31,7 +35,7 @@ const DisplayCategories = (pets) => {
     card.appendChild(img);
     card.appendChild(nameElement);
 
-    //append to container
+    //append to Categorycontainer
     categoryContainer.appendChild(card);
   });
 };

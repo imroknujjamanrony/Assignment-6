@@ -66,7 +66,7 @@
         </div>
       </div>
     </header>
-    <main>
+    <main class="w-11/12 mx-auto">
       <!-- dynamic title container  -->
       <div>
         <div class="text-center">
@@ -85,9 +85,23 @@
 
       <!-- catagories of pets -->
       <div
-        class="w-11/12 mx-auto grid grid-cols-1 lg:grid-cols-4 py-6"
+        class="grid place-items-center gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 py-6"
         id="pet-category"
       ></div>
+
+      <!-- sorted container -->
+      <div id="sorted-container" class="flex justify-between items-center py-5">
+        <h2 class="text-[#131313] font-black text-2xl">Best Deal For you</h2>
+        <button class="btn bg-[#0E7A81]">Sort By Price</button>
+      </div>
+
+      <!-- each card details container  -->
+      <div class="grid grid-cols-6 h-[300px]">
+        <!-- left -->
+        <div class="col-span-4 bg-yellow-400"></div>
+        <!-- right -->
+        <div class="col-span-2 bg-fuchsia-700"></div>
+      </div>
     </main>
 
     <!-- footer start from here -->
