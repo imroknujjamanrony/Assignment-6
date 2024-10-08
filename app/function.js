@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("card-content").classList.remove("hidden");
     loadCategories();
     loadpetCard();
-    showMoff();
   }, 2000);
 });
 
@@ -66,11 +65,13 @@ const passPetCard = (likedImages) => {
   likedContainer.appendChild(div);
 };
 
+//**display category */
+
 const DisplayCategories = (pets) => {
   const categoryContainer = document.getElementById("pet-category");
   pets.forEach((item) => {
     const card = document.createElement("button");
-    card.className = "btn h-[70px] py-2";
+    card.className = "btn py-2";
 
     const img = document.createElement("img");
     img.src = item.category_icon;
@@ -144,33 +145,6 @@ const displayPetCard = (petItem) => {
 };
 
 //
-
-// const adoptPet = (button) => {
-//   let countdown = 3;
-//   button.textContent = "Adopted";
-//   button.disabled = true;
-
-//   const modalToggle = document.getElementById("my_modal_7");
-//   const timerElement = document.getElementById("timer");
-
-//   modalToggle.checked = true; // Open the modal
-//   timerElement.textContent = countdown;
-
-//   const interval = setInterval(() => {
-//     countdown--;
-//     if (countdown > 0) {
-//       timerElement.textContent = countdown;
-//     } else {
-//       clearInterval(interval);
-//       timerElement.textContent = "Adopted!";
-//       setTimeout(() => {
-//         modalToggle.checked = false; // Close the modal
-//       }, 1000); // Keep "Adopted!" text for 1 second before closing
-//     }
-//   }, 1000);
-// };
-
-///
 
 const adoptPet = (petId) => {
   let countdown = 3;
