@@ -200,18 +200,49 @@
         <button class="btn bg-[#0E7A81]">Sort By Price</button>
       </div>
 
+      <!-- spinner -->
+      <div id="loading-spin" class="text-center">
+        <span class="loading loading-bars loading-sm"></span>
+      </div>
+
       <!-- each card details container  -->
-      <div class="grid grid-cols-7 gap-2">
-        <!-- left -->
-        <div class="col-span-5">
-          <div
-            id="left-card-container"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2"
-          ></div>
+      <div id="card-content" class="hidden">
+        <div class="grid grid-cols-7 gap-2">
+          <!-- left -->
+          <div class="col-span-5">
+            <div
+              id="left-card-container"
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2"
+            ></div>
+          </div>
+          <!-- right -->
+          <div class="col-span-2 border pl-2 pr-2 pt-2">
+            <div id="liked-pet-container" class="grid grid-cols-2 gap-2"></div>
+          </div>
         </div>
-        <!-- right -->
-        <div class="col-span-2 border pl-2 pr-2 pt-2">
-          <div id="liked-pet-container" class="grid grid-cols-2 gap-2"></div>
+      </div>
+      <!-- adopted button modal -->
+      <div>
+        <!-- The button to open modal -->
+        <label for="my_modal_7" class="btn" onclick="adoptPet(this)"
+          >open modal</label
+        >
+
+        <!-- dialog box -->
+        <input type="checkbox" id="my_modal_7" class="modal-toggle" />
+        <div class="modal" role="dialog">
+          <div class="modal-box text-center">
+            <div class="flex justify-center">
+              <img
+                src="https://img.icons8.com/?size=48&id=q6BlPrJZmxHV&format=png"
+                alt=""
+              />
+            </div>
+            <h3 class="text-lg font-bold">Congrates</h3>
+            <p class="py-2">Adoption Process is Start For your Pet</p>
+            <p id="timer" class="text-xl font-bold">3</p>
+          </div>
+          <label class="modal-backdrop" for="my_modal_7">Close</label>
         </div>
       </div>
     </main>

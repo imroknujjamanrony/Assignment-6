@@ -1,7 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  loadCategories();
-  loadpetCard();
-  showMoff();
+  setTimeout(() => {
+    document.getElementById("loading-spin").classList.add("hidden");
+    document.getElementById("card-content").classList.remove("hidden");
+    loadCategories();
+    loadpetCard();
+    showMoff();
+  }, 2000);
 });
 
 const loadCategories = async () => {
@@ -121,7 +125,7 @@ const displayPetCard = (petItem) => {
           }")'>
              <i class="fa-regular fa-thumbs-up"></i>
           </button>
-          <button class='bg-green-500 text-white px-4 py-2 rounded' onclick='adoptPet(${
+          <button  class='bg-green-500 text-white px-4 py-2 rounded' onclick='adoptPet(${
             pets.petId
           })'>
             Adopt
@@ -137,4 +141,59 @@ const displayPetCard = (petItem) => {
 
     leftContainer.insertAdjacentHTML("beforeend", petCard);
   });
+};
+
+//
+
+// const adoptPet = (button) => {
+//   let countdown = 3;
+//   button.textContent = "Adopted";
+//   button.disabled = true;
+
+//   const modalToggle = document.getElementById("my_modal_7");
+//   const timerElement = document.getElementById("timer");
+
+//   modalToggle.checked = true; // Open the modal
+//   timerElement.textContent = countdown;
+
+//   const interval = setInterval(() => {
+//     countdown--;
+//     if (countdown > 0) {
+//       timerElement.textContent = countdown;
+//     } else {
+//       clearInterval(interval);
+//       timerElement.textContent = "Adopted!";
+//       setTimeout(() => {
+//         modalToggle.checked = false; // Close the modal
+//       }, 1000); // Keep "Adopted!" text for 1 second before closing
+//     }
+//   }, 1000);
+// };
+
+///
+
+const adoptPet = (petId) => {
+  let countdown = 3;
+  const button = document.querySelector(`[onclick='adoptPet(${petId})']`);
+  button.textContent = "Adopted";
+  button.disabled = true;
+
+  const modalToggle = document.getElementById("my_modal_7");
+  const timerElement = document.getElementById("timer");
+
+  modalToggle.checked = true; // Open the modal
+  timerElement.textContent = countdown;
+
+  const interval = setInterval(() => {
+    countdown--;
+    if (countdown > 0) {
+      timerElement.textContent = countdown;
+    } else {
+      clearInterval(interval);
+      timerElement.textContent = "Adopted!";
+      setTimeout(() => {
+        modalToggle.checked = false; // Close the modal
+      }, 1000); // Keep "Adopted!" text for 1 second before closing
+    }
+  }, 1000);
 };
