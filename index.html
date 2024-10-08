@@ -24,10 +24,39 @@
     <header>
       <nav class="w-11/12 mx-auto">
         <!-- nav start from here -->
-        <div class="navbar bg-base-100">
-          <div class="navbar-start flex items-center">
-            <img src="./images/logo.webp" alt="" />
-            <a class="btn btn-ghost text-xl">Peddy</a>
+        <div class="navbar">
+          <div class="navbar-start flex items-center gap-28">
+            <div class="dropdown">
+              <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
+                </svg>
+              </div>
+              <ul
+                tabindex="0"
+                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              >
+                <li><a>Home</a></li>
+                <li><a>Shop</a></li>
+
+                <li><a>Contact</a></li>
+              </ul>
+            </div>
+            <div class="flex justify-center lg:justify-start gap-1 text-center">
+              <img src="./images/logo.webp" alt="" />
+              <a class="text-3xl font-black text-center">Peddy</a>
+            </div>
           </div>
           <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1 gap-2">
@@ -39,11 +68,13 @@
             </ul>
           </div>
           <div class="navbar-end">
-            <img
-              class="h-8"
-              src="https://img.icons8.com/?size=32&id=23400&format=png"
-              alt=""
-            />
+            <div class="bg-gray-100 rounded-full">
+              <img
+                class="h-8"
+                src="https://img.icons8.com/?size=32&id=23400&format=png"
+                alt=""
+              />
+            </div>
           </div>
         </div>
       </nav>
@@ -57,25 +88,33 @@
             class="h-3"
             src="https://img.icons8.com/?size=32&id=hkadHxiRMQDL&format=png"
             alt=""
+            srcset="" />
+          <img
+            class="h-4 w-4"
+            src="https://img.icons8.com/?size=80&id=htXOOvtj6HxI&format=png"
+            alt=""
             srcset=""
         /></span>
+
         <h2 class="font-extrabold text-[#131313] text-7xl py-4">
           Your Path To Adoption <br />
           Starts Here
         </h2>
         <p class="font-normal text-base text-[#131313] py-3">
           Adopting a pet is a heartwarming decision that brings joy to both the
-          pet and their new family. <br />
+          pet and their new family. <br class="hidden lg:block" />
           It provides a loving home for animals in need and enriches the lives
           of their adopters
         </p>
-        <button class="btn bg-[#0E7A81] text-white">View More</button>
+        <button class="btn bg-[#0E7A81] text-white">
+          <a href="#main-id">View More</a>
+        </button>
         <div class="flex justify-center">
           <img src="./images/pet.webp" alt="" />
         </div>
       </div>
     </header>
-    <main class="w-11/12 mx-auto">
+    <main id="main-id" class="w-11/12 mx-auto">
       <!-- dynamic title container  -->
       <div>
         <div class="text-center">
@@ -98,6 +137,63 @@
         id="pet-category"
       ></div>
 
+      <!-- modal -->
+      <div>
+        <!-- The button to open modal -->
+        <a href="#my_modal_8" class="btn">open modal</a>
+
+        <!-- Put this part before <body> tag -->
+        <div class="modal" role="dialog" id="my_modal_8">
+          <div class="modal-box">
+            <img id="img-src" src="" alt="" srcset="" />
+            <!-- container -->
+            <div class="flex gap-16">
+              <!-- breed left -->
+              <div>
+                <h3 class="text-xl text-[#131313] font-bold" id="pet-name"></h3>
+                <p
+                  class="text-base font-normal text-[#131313B3]"
+                  id="breed-name"
+                ></p>
+                <p
+                  class="text-base font-normal text-[#131313B3]"
+                  id="gender-name"
+                ></p>
+                <p id="vaccinate-name"></p>
+              </div>
+              <!-- birth-right -->
+              <div class="pt-6">
+                <p
+                  class="text-base font-normal text-[#131313B3]"
+                  id="birth-date"
+                ></p>
+                <p
+                  class="text-base font-normal text-[#131313B3]"
+                  id="price-name"
+                ></p>
+              </div>
+            </div>
+            <!-- btn and description -->
+            <div>
+              <hr class="pt-2" />
+              <h3
+                class="text-[#131313] font-semibold text-base"
+                id="description-title"
+              >
+                Details Information
+              </h3>
+              <p
+                id="description-para"
+                class="text-[#131313B3] text-base font-normal"
+              ></p>
+            </div>
+            <div class="modal-action flex justify-center">
+              <a href="#" class="btn btn-wide text-[#0E7A81]">Cancel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- sorted container -->
       <div id="sorted-container" class="flex justify-between items-center py-5">
         <h2 class="text-[#131313] font-black text-2xl">Best Deal For you</h2>
@@ -114,7 +210,9 @@
           ></div>
         </div>
         <!-- right -->
-        <div class="col-span-2 border"></div>
+        <div class="col-span-2 border pl-2 pr-2 pt-2">
+          <div id="liked-pet-container" class="grid grid-cols-2 gap-2"></div>
+        </div>
       </div>
     </main>
 
@@ -131,12 +229,23 @@
             <h2 class="font-black text-[#FFFFFF] text-3xl">Peddy</h2>
           </div>
           <p class="text-[#FFFFFFE6]">
-            Location: av. Washington 165, NY CA <br />
-            54003 <br />
+            Location: av. Washington 165, NY CA 54003 <br />
             Phone: +31 85 964 47 25 <br />
             Email: info@yourdomain.com <br />
             Openings hours: 9.00 AM - 5.00 PM
           </p>
+          <ul class="pt-3 lg:flex flex-row gap-4">
+            <li>
+              <i class="fa-brands fa-facebook" style="color: #ffffff"></i>
+            </li>
+            <li>
+              <i class="fa-brands fa-x-twitter" style="color: #ffffff"></i>
+            </li>
+            <li><i class="fa-brands fa-youtube" style="color: #ff0000"></i></li>
+            <li>
+              <i class="fa-brands fa-instagram" style="color: #f01414"></i>
+            </li>
+          </ul>
         </div>
 
         <!-- 2 -->
