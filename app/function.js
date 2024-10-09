@@ -1,3 +1,5 @@
+let pets = [];
+
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     document.getElementById("loading-spin").classList.add("hidden");
@@ -73,6 +75,12 @@ const loadcatVideo = (id) => {
     .then((data) => displayPetCard(data.data));
 };
 
+//**sorted data */
+const sortedByPrice = () => {
+  const sortedData = pets.sort((a, b) => Number(b.price) - Number(a.price));
+  displayPetCard(sortedData);
+};
+
 //**display category */
 
 const DisplayCategories = (pets) => {
@@ -80,22 +88,25 @@ const DisplayCategories = (pets) => {
   pets.forEach((item) => {
     const card = document.createElement("div");
     card.innerHTML = `
-    
-    <button class='btn' onclick='loadcatVideo("${item.category}")'>${item.category} <img class='w-10 h-8 mr-4' src='${item.category_icon}'/></button>
-    
-    
+
+    <button class='btn' onclick='loadcatVideo("${item.category}")'> <img class='w-10 h-8 mr-4' src='${item.category_icon} '/>${item.category}</button>
+
     `;
 
     categoryContainer.appendChild(card);
   });
 };
 
+//**all data */
 const loadpetCard = async () => {
   const response = await fetch(
     "https://openapi.programming-hero.com/api/peddy/pets"
   );
   const data = await response.json();
-  displayPetCard(data.pets);
+  // displayPetCard(data.pets);
+  pets = data.pets;
+  // console.log(pets);
+  displayPetCard(pets);
 };
 
 const displayPetCard = (petItem) => {
@@ -175,3 +186,5 @@ const adoptPet = (petId) => {
     }
   }, 1000);
 };
+
+//
