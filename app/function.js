@@ -65,24 +65,27 @@ const passPetCard = (likedImages) => {
   likedContainer.appendChild(div);
 };
 
+const loadcatVideo = (id) => {
+  console.log(id);
+  //fetch
+  fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
+    .then((res) => res.json())
+    .then((data) => displayPetCard(data.data));
+};
+
 //**display category */
 
 const DisplayCategories = (pets) => {
   const categoryContainer = document.getElementById("pet-category");
   pets.forEach((item) => {
-    const card = document.createElement("button");
-    card.className = "btn py-2";
+    const card = document.createElement("div");
+    card.innerHTML = `
+    
+    <button class='btn' onclick='loadcatVideo("${item.category}")'>${item.category} <img class='w-10 h-8 mr-4' src='${item.category_icon}'/></button>
+    
+    
+    `;
 
-    const img = document.createElement("img");
-    img.src = item.category_icon;
-    img.classList.add("w-10", "h-8", "mr-4");
-
-    const nameElement = document.createElement("div");
-    nameElement.classList.add("text-lg", "font-bold");
-    nameElement.textContent = item.category;
-
-    card.appendChild(img);
-    card.appendChild(nameElement);
     categoryContainer.appendChild(card);
   });
 };
@@ -97,6 +100,7 @@ const loadpetCard = async () => {
 
 const displayPetCard = (petItem) => {
   const leftContainer = document.getElementById("left-card-container");
+  leftContainer.innerHTML = "";
   petItem.forEach((pets) => {
     const petCard = `
       <div class='border p-4 rounded shadow-lg'>
