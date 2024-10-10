@@ -26,8 +26,8 @@
         <!-- nav start from here -->
         <div class="navbar">
           <div class="navbar-start flex items-center gap-28">
-            <div class="dropdown">
-              <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+            <div class="dropdown md:hidden lg:hidden">
+              <div tabindex="0" role="button" class="btn btn-ghost">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-5 w-5"
@@ -96,7 +96,7 @@
             srcset=""
         /></span>
 
-        <h2 class="font-extrabold text-[#131313] text-7xl py-4">
+        <h2 class="font-extrabold text-5xl text-[#131313] lg:text-7xl py-4">
           Your Path To Adoption <br />
           Starts Here
         </h2>
@@ -136,11 +136,27 @@
         class="grid place-items-center gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 py-6"
         id="pet-category"
       ></div>
-
+      <!-- no data container -->
+      <div id="no-data" class="hidden text-center bg-[#13131308] py-14">
+        <div class="flex justify-center">
+          <img src="./images/error.webp" alt="" />
+        </div>
+        <h2 class="font-bold text-[#131313] text-3xl">
+          No Information Available
+        </h2>
+        <p class="text-[#131313B3] text-base font-normal py-4">
+          Pets have an incredible ability to bring joy and comfort to their
+          owners. Whether it's a playful cat, a loyal dog, or an inquisitive
+          rabbit, the companionship they provide is unmatched. People often find
+          solace in their pets' presence, easing stress and enhancing their
+          overall well-being. The bond between humans and pets is a testament to
+          the profound impact they have on our lives.
+        </p>
+      </div>
       <!-- modal -->
       <div>
         <!-- The button to open modal -->
-        <a href="#my_modal_8" class="btn">open modal</a>
+        <a href="#my_modal_8" class="btn hidden">open modal</a>
 
         <!-- Put this part before <body> tag -->
         <div class="modal" role="dialog" id="my_modal_8">
@@ -229,7 +245,11 @@
       <!-- adopted button modal -->
       <div>
         <!-- The button to open modal -->
-        <label for="my_modal_7" class="btn" onclick="adoptPet(this)"
+        <label
+          for="my_modal_7"
+          class="btn hidden"
+          id="adopt-modal"
+          onclick="adoptPet(this)"
           >open modal</label
         >
 
@@ -253,7 +273,7 @@
     </main>
 
     <!-- footer start from here -->
-    <footer class="bg-[#131313]">
+    <footer id="foot" class="bg-[#131313] hidden">
       <!-- footer container -->
       <div
         class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-8"
@@ -277,7 +297,9 @@
             <li>
               <i class="fa-brands fa-x-twitter" style="color: #ffffff"></i>
             </li>
-            <li><i class="fa-brands fa-youtube" style="color: #ff0000"></i></li>
+            <li>
+              <i class="fa-brands fa-youtube" style="color: #ff0000"></i>
+            </li>
             <li>
               <i class="fa-brands fa-instagram" style="color: #f01414"></i>
             </li>

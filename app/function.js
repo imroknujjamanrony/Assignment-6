@@ -4,10 +4,15 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     document.getElementById("loading-spin").classList.add("hidden");
     document.getElementById("card-content").classList.remove("hidden");
+    document.getElementById("foot").classList.remove("hidden");
+    document.getElementById("my_modal_8").classList.remove("hidden");
+    document.getElementById("my_modal_7").classList.remove("hidden");
     loadCategories();
     loadpetCard();
   }, 2000);
 });
+
+//** load categories */
 
 const loadCategories = async () => {
   const response = await fetch(
@@ -17,6 +22,8 @@ const loadCategories = async () => {
   DisplayCategories(data.categories);
 };
 
+//**fetch load pet details */
+
 const loadPetdetails = async (cardId) => {
   const response = await fetch(
     `https://openapi.programming-hero.com/api/peddy/pet/${cardId}`
@@ -25,6 +32,7 @@ const loadPetdetails = async (cardId) => {
   updateModalContent(data.petData);
 };
 
+//**Pet details modal  */
 const updateModalContent = (data) => {
   const img = document.getElementById("img-src");
   const petName = document.getElementById("pet-name");
@@ -59,6 +67,7 @@ const updateModalContent = (data) => {
   }
 };
 
+//**Pass the img to the right div */
 const passPetCard = (likedImages) => {
   const likedContainer = document.getElementById("liked-pet-container");
   const div = document.createElement("div");
@@ -84,6 +93,8 @@ const sortedByPrice = () => {
 //**display category */
 
 const DisplayCategories = (pets) => {
+  console.log(pets.length);
+
   const categoryContainer = document.getElementById("pet-category");
   pets.forEach((item) => {
     const card = document.createElement("div");
@@ -103,19 +114,29 @@ const loadpetCard = async () => {
     "https://openapi.programming-hero.com/api/peddy/pets"
   );
   const data = await response.json();
-  // displayPetCard(data.pets);
+
   pets = data.pets;
-  // console.log(pets);
+
   displayPetCard(pets);
 };
+
+//**display all pet card */
 
 const displayPetCard = (petItem) => {
   const leftContainer = document.getElementById("left-card-container");
   leftContainer.innerHTML = "";
+  console.log(petItem.length);
+  if (petItem.length == 0) {
+    const noData = document.getElementById("no-data");
+    noData.classList.remove("hidden");
+  } else {
+    const noData = document.getElementById("no-data");
+    noData.classList.add("hidden");
+  }
   petItem.forEach((pets) => {
     const petCard = `
       <div class='border p-4 rounded shadow-lg'>
-        <img src="${pets.image || "placeholder.jpg"}" alt="${
+        <img class='w-full' src="${pets.image || "placeholder.jpg"}" alt="${
       pets.pet_name
     }" class="w-full h-56 object-cover rounded mb-4">
         <h3 class='text-xl text-[#131313] font-bold'>${pets.pet_name}</h3>
@@ -146,7 +167,7 @@ const displayPetCard = (petItem) => {
           })'>
             Adopt
           </button>
-          <a href="#my_modal_8" class='bg-green-500 text-white px-4 py-2 rounded' onclick='loadPetdetails(${
+          <a href="#my_modal_8" id='de-tail' class=' bg-green-500 text-white px-4 py-2 rounded' onclick='loadPetdetails(${
             pets.petId
           })'>
             Details
@@ -159,7 +180,7 @@ const displayPetCard = (petItem) => {
   });
 };
 
-//
+//**adopted pet modal with timer */
 
 const adoptPet = (petId) => {
   let countdown = 3;
@@ -186,5 +207,3 @@ const adoptPet = (petId) => {
     }
   }, 1000);
 };
-
-//
