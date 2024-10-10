@@ -276,10 +276,10 @@
     <footer id="foot" class="bg-[#131313] hidden">
       <!-- footer container -->
       <div
-        class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-8"
+        class="flex flex-col lg:flex-row lg:justify-evenly py-8 w-11/12 mx-auto"
       >
         <!-- 1 -->
-        <div>
+        <div class="">
           <div class="flex gap-1">
             <img src="./images/logo.webp" alt="" />
             <h2 class="font-black text-[#FFFFFF] text-3xl">Peddy</h2>
@@ -290,24 +290,26 @@
             Email: info@yourdomain.com <br />
             Openings hours: 9.00 AM - 5.00 PM
           </p>
-          <ul class="pt-3 lg:flex flex-row gap-4">
-            <li>
-              <i class="fa-brands fa-facebook" style="color: #ffffff"></i>
-            </li>
-            <li>
-              <i class="fa-brands fa-x-twitter" style="color: #ffffff"></i>
-            </li>
-            <li>
-              <i class="fa-brands fa-youtube" style="color: #ff0000"></i>
-            </li>
-            <li>
-              <i class="fa-brands fa-instagram" style="color: #f01414"></i>
-            </li>
-          </ul>
+          <div>
+            <ul class="flex gap-5">
+              <li>
+                <i class="fa-brands fa-facebook" style="color: #ffffff"></i>
+              </li>
+              <li>
+                <i class="fa-brands fa-x-twitter" style="color: #ffffff"></i>
+              </li>
+              <li>
+                <i class="fa-brands fa-youtube" style="color: #ff0000"></i>
+              </li>
+              <li>
+                <i class="fa-brands fa-instagram" style="color: #f01414"></i>
+              </li>
+            </ul>
+          </div>
         </div>
-
+        //
         <!-- 2 -->
-        <div class="text-center">
+        <div class="">
           <h3 class="text-[#FFFFFFE6] font-bold text-lg">Useful Link</h3>
           <ul class="text-[#FFFFFF99] text-base font-normal">
             <li><a href="">Home</a></li>
@@ -319,7 +321,7 @@
         </div>
 
         <!-- 3 -->
-        <div>
+        <div class="">
           <h3 class="text-[#FFFFFFE6] font-bold text-lg">Drop a Message</h3>
           <div class="pt-3">
             <label class="input input-bordered flex items-center gap-2">
@@ -327,7 +329,9 @@
             </label>
           </div>
           <div class="pt-3">
-            <button class="btn">Subscribe</button>
+            <button class="btn w-full bg-green-500 text-white">
+              Subscribe
+            </button>
           </div>
         </div>
       </div>

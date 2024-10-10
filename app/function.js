@@ -25,10 +25,14 @@ const loadCategories = async () => {
 //**fetch load pet details */
 
 const loadPetdetails = async (cardId) => {
+  const activeDetails = document.getElementById(`btn-${cardId}`);
+  // console.log(activeDetails);
+  activeDetails.classList.add("activeD");
   const response = await fetch(
     `https://openapi.programming-hero.com/api/peddy/pet/${cardId}`
   );
   const data = await response.json();
+
   updateModalContent(data.petData);
 };
 
@@ -171,19 +175,21 @@ const displayPetCard = (petItem) => {
           }
         </p>
         <div class='flex justify-between mt-4'>
-          <button class='bg-green-500 text-white px-4 py-2 rounded' onclick='passPetCard("${
+          <button class='bg-gray-400 text-white px-4 py-2 rounded' onclick='passPetCard("${
             pets.image
           }")'>
              <i class="fa-regular fa-thumbs-up"></i>
           </button>
-          <button  class='bg-green-500 text-white px-4 py-2 rounded' onclick='adoptPet(${
+          <button id='btn-${
             pets.petId
-          })'>
+          }'  class='adopt-all-btn bg-gray-400 text-white px-4 py-2 rounded' onclick='adoptPet(${
+      pets.petId
+    })'>
             Adopt
           </button>
-          <a href="#my_modal_8" id='de-tail' class=' bg-green-500 text-white px-4 py-2 rounded' onclick='loadPetdetails(${
+          <a href="#my_modal_8"  class=' bg-gray-400 text-white px-4 py-2 rounded' id='btn-${
             pets.petId
-          })'>
+          }' onclick='loadPetdetails(${pets.petId})'>
             Details
           </a>
         </div>
@@ -193,10 +199,15 @@ const displayPetCard = (petItem) => {
     leftContainer.insertAdjacentHTML("beforeend", petCard);
   });
 };
+//**card color remove */
 
 //**adopted pet modal with timer */
 
 const adoptPet = (petId) => {
+  removeAdptclr();
+  const btnAdpt = document
+    .getElementById(`btn-${petId}`)
+    .classList.add("active");
   let countdown = 3;
   const button = document.querySelector(`[onclick='adoptPet(${petId})']`);
   button.textContent = "Adopted";
@@ -220,4 +231,13 @@ const adoptPet = (petId) => {
       }, 1000); // Keep "Adopted!" text for 1 second before closing
     }
   }, 1000);
+};
+
+//
+
+const removeAdptclr = () => {
+  const buttons = document.getElementsByClassName("adopt-all-btn");
+  for (btn of buttons) {
+    btn.classList.remove("active");
+  }
 };
