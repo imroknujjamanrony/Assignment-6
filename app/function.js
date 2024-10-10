@@ -75,13 +75,29 @@ const passPetCard = (likedImages) => {
   div.innerHTML = `<img class='rounded-lg px-2 py-2' src="${likedImages}"/>`;
   likedContainer.appendChild(div);
 };
+//**loadCat video */
 
 const loadcatVideo = (id) => {
   console.log(id);
   //fetch
   fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
     .then((res) => res.json())
-    .then((data) => displayPetCard(data.data));
+    .then((data) => {
+      removeActiveClass();
+      const activeBtn = document.getElementById(`btn-${id}`);
+      activeBtn.classList.add("active");
+
+      displayPetCard(data.data);
+    });
+};
+
+//**remove active class */
+const removeActiveClass = () => {
+  const buttons = document.getElementsByClassName("category-btn");
+
+  for (let btn of buttons) {
+    btn.classList.remove("active");
+  }
 };
 
 //**sorted data */
@@ -93,14 +109,12 @@ const sortedByPrice = () => {
 //**display category */
 
 const DisplayCategories = (pets) => {
-  console.log(pets.length);
-
   const categoryContainer = document.getElementById("pet-category");
   pets.forEach((item) => {
     const card = document.createElement("div");
     card.innerHTML = `
 
-    <button class='btn' onclick='loadcatVideo("${item.category}")'> <img class='w-10 h-8 mr-4' src='${item.category_icon} '/>${item.category}</button>
+    <button class='btn category-btn' id="btn-${item.category}" onclick='loadcatVideo("${item.category}")'> <img class='w-10 h-8 mr-4' src='${item.category_icon} '/>${item.category}</button>
 
     `;
 
@@ -125,7 +139,7 @@ const loadpetCard = async () => {
 const displayPetCard = (petItem) => {
   const leftContainer = document.getElementById("left-card-container");
   leftContainer.innerHTML = "";
-  console.log(petItem.length);
+  // console.log(petItem.length);
   if (petItem.length == 0) {
     const noData = document.getElementById("no-data");
     noData.classList.remove("hidden");
