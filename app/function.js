@@ -25,7 +25,8 @@ const loadCategories = async () => {
 //**fetch load pet details */
 
 const loadPetdetails = async (cardId) => {
-  const activeDetails = document.getElementById(`btn-${cardId}`);
+  removeClrDetails();
+  const activeDetails = document.getElementById(`btn2-${cardId}`);
   // console.log(activeDetails);
   activeDetails.classList.add("activeD");
   const response = await fetch(
@@ -71,12 +72,25 @@ const updateModalContent = (data) => {
   }
 };
 
+//**remove like btn clr */
+const likeClr = () => {
+  const btn3 = document.getElementsByClassName("all-like-btn");
+  for (let btn of btn3) {
+    btn.classList.remove("activeL");
+  }
+};
+
 //**Pass the img to the right div */
 const passPetCard = (likedImages) => {
+  likeClr();
+  const likeBtnAll = document.getElementById(`btn3-${likedImages}`);
+  likeBtnAll.classList.add("activeL");
+  //
   const likedContainer = document.getElementById("liked-pet-container");
   const div = document.createElement("div");
   div.className = "bg-white shadow-md";
   div.innerHTML = `<img class='rounded-lg px-2 py-2' src="${likedImages}"/>`;
+
   likedContainer.appendChild(div);
 };
 //**loadCat video */
@@ -188,9 +202,9 @@ const displayPetCard = (petItem) => {
           }
         </p>
         <div class='flex justify-between mt-4'>
-          <button class='bg-gray-400 text-white px-4 py-2 rounded' onclick='passPetCard("${
-            pets.image
-          }")'>
+          <button id='btn3-${this}' class='all-like-btn   bg-gray-400 text-white px-4 py-2 rounded' onclick='passPetCard("${
+      pets.image
+    }")'>
              <i class="fa-regular fa-thumbs-up"></i>
           </button>
           <button id='btn-${
@@ -200,7 +214,7 @@ const displayPetCard = (petItem) => {
     })'>
             Adopt
           </button>
-          <a href="#my_modal_8"  class=' bg-gray-400 text-white px-4 py-2 rounded' id='btn-${
+          <a href="#my_modal_8"  class='detail-all-btn bg-gray-400 text-white px-4 py-2 rounded' id='btn2-${
             pets.petId
           }' onclick='loadPetdetails(${pets.petId})'>
             Details
@@ -212,7 +226,14 @@ const displayPetCard = (petItem) => {
     leftContainer.insertAdjacentHTML("beforeend", petCard);
   });
 };
-//**card color remove */
+//**card color remove for details */
+const removeClrDetails = () => {
+  const buttonsD = document.getElementsByClassName("detail-all-btn");
+  for (button2 of buttonsD) {
+    console.log(button2);
+    button2.classList.remove("activeD");
+  }
+};
 
 //**adopted pet modal with timer */
 
