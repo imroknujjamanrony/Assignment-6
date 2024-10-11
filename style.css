@@ -15,6 +15,12 @@
   border-radius: 50px !important;
 }
 
+.activeL {
+  background-color: green !important;
+  color: white !important;
+  border-radius: 50px !important;
+}
+
 .clicked {
   background-color: #4caf50; /* Example: green background */
   color: white;
