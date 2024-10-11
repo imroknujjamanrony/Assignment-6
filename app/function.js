@@ -112,18 +112,31 @@ const sortedByPrice = () => {
 
 //**display category */
 
-const DisplayCategories = (pets) => {
+const displayCategory = (pets) => {
   const categoryContainer = document.getElementById("pet-category");
-  pets.forEach((item) => {
-    const card = document.createElement("div");
-    card.innerHTML = `
+  categoryContainer.innerHTML = ""; // Clear previous categories
 
-    <button class='btn category-btn' id="btn-${item.category}" onclick='loadcatVideo("${item.category}")'> <img class='w-10 h-8 mr-4' src='${item.category_icon} '/>${item.category}</button>
-
+  pets.forEach((item, index) => {
+    const card = `
+      <button id="btn-${item.category}" class='btn category-btn' onclick='loadcatVideo("${item.category}")'>
+        <img class='w-10 h-8 mr-4' src='${item.category_icon}' />${item.category}
+      </button>
     `;
+    categoryContainer.innerHTML += card;
 
-    categoryContainer.appendChild(card);
+    // Simulate a click on the button at index 1 after all buttons are created
+    if (index === pets.length - 1) {
+      const buttons = document.getElementsByClassName("category-btn");
+      if (buttons.length > 1) {
+        buttons[1].click(); // Click the button at index 1
+      }
+    }
   });
+};
+
+// Assuming DisplayCategories function is your actual function
+const DisplayCategories = (pets) => {
+  displayCategory(pets);
 };
 
 //**all data */
