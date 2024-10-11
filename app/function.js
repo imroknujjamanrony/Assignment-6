@@ -27,7 +27,7 @@ const loadCategories = async () => {
 const loadPetdetails = async (cardId) => {
   removeClrDetails();
   const activeDetails = document.getElementById(`btn2-${cardId}`);
-  // console.log(activeDetails);
+
   activeDetails.classList.add("activeD");
   const response = await fetch(
     `https://openapi.programming-hero.com/api/peddy/pet/${cardId}`
@@ -73,18 +73,19 @@ const updateModalContent = (data) => {
 };
 
 //**remove like btn clr */
-const likeClr = () => {
-  const btn3 = document.getElementsByClassName("all-like-btn");
-  for (let btn of btn3) {
-    btn.classList.remove("activeL");
-  }
-};
+// const likeClr = () => {
+//   const btn3 = document.getElementsByClassName("all-like-btn");
+//   for (let btn of btn3) {
+//     btn.classList.remove("activeL");
+//   }
+// };
 
 //**Pass the img to the right div */
-const passPetCard = (likedImages) => {
-  likeClr();
-  const likeBtnAll = document.getElementById(`btn3-${likedImages}`);
-  likeBtnAll.classList.add("activeL");
+const passPetCard = (element, likedImages) => {
+  element.style.backgroundColor = "green";
+  // likeClr();
+  // const likeBtnAll = document.getElementById(`btn3-${likedImages}`);
+  // likeBtnAll.classList.add("activeL");
   //
   const likedContainer = document.getElementById("liked-pet-container");
   const div = document.createElement("div");
@@ -202,9 +203,10 @@ const displayPetCard = (petItem) => {
           }
         </p>
         <div class='flex justify-between mt-4'>
-          <button id='btn3-${this}' class='all-like-btn   bg-gray-400 text-white px-4 py-2 rounded' onclick='passPetCard("${
-      pets.image
-    }")'>
+          <button id='btn3-${
+            pets.petId
+          }' class='all-like-btn   bg-gray-400 text-white px-4 py-2 rounded'
+           onclick='passPetCard(this,"${pets.image}")'>
              <i class="fa-regular fa-thumbs-up"></i>
           </button>
           <button id='btn-${
